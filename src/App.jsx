@@ -67,8 +67,8 @@ const App = () => {
         <Route path='/' element={user ? <Dashboard /> : <Landing />} />        
         <Route path='/sign-up' element={<SignUpForm />} />
         <Route path='/sign-in' element={<SignInForm />} />
-       
-        <Route path='/post-form' element={<PostForm />} />
+        <Route path='/posts/new' element={<PostForm createPost={createPost} />} />       
+        {/* <Route path='/post-form' element={<PostForm />} /> */}
        
       </Routes>
       
