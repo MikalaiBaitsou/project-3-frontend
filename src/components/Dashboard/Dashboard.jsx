@@ -6,6 +6,10 @@ import { UserContext } from '../../contexts/UserContext';
 
 import * as userService from '../../services/userService';
 
+import { Link } from 'react-router'
+
+
+
 const Dashboard = () => {
   const { user } = useContext(UserContext);
 
@@ -29,12 +33,16 @@ const Dashboard = () => {
   // of user changes
 
   return (
-    <main>
+    <main>            
       <h1>Welcome, {user.username}</h1>
       <p>
         This is the dashboard page where you can see a list of all the users.
       </p>
+      <Link to="/post-form">Create New Post</Link>
     </main>
+    
+
+    
   );
 };
 
