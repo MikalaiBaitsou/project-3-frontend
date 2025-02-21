@@ -1,0 +1,10 @@
+:root {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+  }
+
+  h1, em {
+    display: flex;
+  }
