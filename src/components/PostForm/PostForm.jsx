@@ -19,7 +19,6 @@ export default function PostForm(props) {
             
         });
     }
-
     function handleSubmit(e) {
         e.preventDefault();
 
