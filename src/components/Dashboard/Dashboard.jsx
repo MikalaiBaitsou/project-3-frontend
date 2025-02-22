@@ -39,6 +39,8 @@ const Dashboard = () => {
         This is the dashboard page where you can see a list of all the users.
       </p>
       <Link to="/posts/new">Create New Post</Link>
+      <br />
+      <Link to="/posts">All Posts</Link>
     </main>
     
 
