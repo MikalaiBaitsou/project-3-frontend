@@ -47,7 +47,7 @@ const App = () => {
 
 
   
-  // use case: We want all of the pets when the page loads
+  // use case: We want all of the posts when the page loads
 
   async function createPost(dataFromTheForm) {
     // lift the dataFromTheForm
@@ -79,7 +79,7 @@ const App = () => {
         return post._id !== postIdFromPostDetails
       })
       // update state with the filtered array
-      setPosts(filteredPostsArray) // remove from the pet array
+      setPosts(filteredPostsArray) // remove from the post array
     } catch (err) {
       console.log(err)
     }

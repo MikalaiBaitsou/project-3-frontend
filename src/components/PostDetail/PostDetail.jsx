@@ -4,10 +4,7 @@ import { Navigate } from "react-router"
 
 export default function PostDetail(props){
 
-    // null is the orignal value of selectedPet
-   
-    // petId is coming from the route
-    // <Route path='/pets/:petId' element={<PetDetail deletePet={deletePet} pets={pets}/>} />
+    
     const { postId } = useParams()
     const navigate = useNavigate()
 

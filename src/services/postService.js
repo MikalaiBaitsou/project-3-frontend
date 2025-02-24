@@ -1,13 +1,13 @@
 
-// Where we define all the fetch calls to the backend api for the PETS resource
+// Where we define all the fetch calls to the backend api for the POSTS resource
 
 // What every api call will start with
-// we know its /pets because of this line in the server
-// app.use('/pets', petRouter)
+// we know its /posts because of this line in the server
+// app.use('/posts', postRouter)
 const BASE_URL =  `${import.meta.env.VITE_BACK_END_SERVER_URL}/posts`
 
 
-// As a user, I want to be able to view all of the pets.
+// As a user, I want to be able to view all of the posts.
 async function index(){
     try {
         const response = await fetch(BASE_URL)
@@ -20,7 +20,7 @@ async function index(){
     }
 }
 
-// I want to be able to create a PET
+// I want to be able to create a post
 // Where (what component) do we want to call this function?
 // Answer - Wherever the state is that pertains to this data
 // When do we want to call this function?
@@ -52,11 +52,11 @@ async function create(formData){
 }
 
 
-// What component has the information of the petId? In this case PetDetail
-// Where do we want to call this function? App (because thats where our pet state is) and after we delete we want to update
+// What component has the information of the postId? In this case postDetail
+// Where do we want to call this function? App (because thats where our post state is) and after we delete we want to update
 // it to reflect the deletion
 
-// when do we want to call this function? When the user presses delete in the PetDetail function!
+// when do we want to call this function? When the user presses delete in the postDetail function!
 async function deletePost(postId){
     try {
         const response = await fetch(BASE_URL + `/${postId}`, {
