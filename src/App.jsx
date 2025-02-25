@@ -1,113 +1,100 @@
-// src/App.jsx
-import { useState, useContext, useEffect } from 'react'; // Removed useState since it's not used
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import SignUpForm from './components/SignUpForm/SignUpForm';
 import SignInForm from './components/SignInForm/SignInForm';
 import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Landing/Landing';
 import { UserContext } from './contexts/UserContext';
-
 import PostForm from './components/PostForm/PostForm';
 import PostList from './components/PostList/PostList';
 import PostDetail from './components/PostDetail/PostDetail';
-import * as postService from './services/postService'
-
-
+import CommentList from './components/CommentList/CommentList';
+import CommentForm from './components/CommentForm/CommentForm';
+import * as postService from './services/postService';
+import * as commentService from './services/commentService';
 
 const App = () => {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  const location = useLocation();
-  const showNavBar = location.pathname !== '/';
-
 
   useEffect(() => {
-
-    // define and then call the function immediatly
     async function fetchPosts() {
       try {
-
-        const data = await postService.index()
-        // check your work before you do anything else!
-        console.log(data, ' <- data')
-        // every time you update state, go to your 
-        // dev tools and look at it!
-        setPosts(data)
+        const data = await postService.index();
+        setPosts(data);
       } catch (err) {
-        console.log(err)
+        console.error(err);
       }
     }
-
-    // calling the function
-    fetchPosts()
-
+    fetchPosts();
   }, []);
 
-
-  
-  // use case: We want all of the posts when the page loads
-
-  async function createPost(dataFromTheForm) {
-    // lift the dataFromTheForm
-    // pass this function to the form component
-    // and call it when the user submits the form
+  async function createPost(postData) {
     try {
-      const newPost = await postService.create(dataFromTheForm)
-      console.log(newPost, ' <- this is our newPost')
-      setPosts([...posts, newPost])
-      navigate('/posts')
+      const newPost = await postService.create(postData);
+      setPosts(prevPosts => [...prevPosts, { ...newPost, comments: [] }]);
+      navigate('/posts');
     } catch (err) {
-      console.log(err)
+      console.error(err);
     }
   }
 
-  async function deletePost(postIdFromPostDetails) {
+  async function deletePost(postId) {
     try {
-      const response = await postService.deletePost(postIdFromPostDetails)
-
-      // one way to handle an error from the response
-      if (response.err) {
-        // this forces the err to go to the catch block, the arugment to new Error 
-        // will be the value of err in the catch block
-        throw new Error(response.err)
-      }
-
-      // update our state! filter creates a new array
-      const filteredPostsArray = posts.filter((post) => {
-        return post._id !== postIdFromPostDetails
-      })
-      // update state with the filtered array
-      setPosts(filteredPostsArray) // remove from the post array
+      const response = await postService.deletePost(postId);
+      setPosts(prevPosts => prevPosts.filter(post => post._id !== postId));
     } catch (err) {
-      console.log(err)
+      console.error('Error deleting post:', err);
+      // Optionally, show a message to the user or re-fetch posts
+    }
+  }
+  
+
+  async function addComment(postId, commentData) {
+    try {
+      const newComment = await commentService.create(postId, commentData);
+      setPosts(prevPosts =>
+        prevPosts.map(post =>
+          post._id === postId
+            ? { ...post, comments: [...post.comments, newComment] }
+            : post
+        )
+      );
+    } catch (err) {
+      console.error(err);
     }
   }
 
+  async function deleteComment(postId, commentId) {
+    try {
+      await commentService.delete(postId, commentId);
+      setPosts(prevPosts =>
+        prevPosts.map(post =>
+          post._id === postId
+            ? { ...post, comments: post.comments.filter(comment => comment._id !== commentId) }
+            : post
+        )
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
-  
-  
   return (
     <>
-      {showNavBar && <NavBar />}
+      {user ? <NavBar /> : null}
       <Routes>
-        <Route path='/' element={user ? <Dashboard /> : <Landing />} />        
+        <Route path='/' element={user ? <Dashboard /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm />} />
         <Route path='/sign-in' element={<SignInForm />} />
-        <Route path='/posts/new' element={<PostForm createPost={createPost} />} />       
-        <Route path='/posts' element={<PostList  posts={posts} />} />
-        <Route path='/posts/:postId' element={<PostDetail deletePost={deletePost} posts={posts}/>} />
-       
+        <Route path='/posts/new' element={<PostForm createPost={createPost} />} />
+        <Route path='/posts' element={<PostList posts={posts} deletePost={deletePost} />} />
+        <Route path='/posts/:postId' element={<PostDetail posts={posts} deletePost={deletePost} addComment={addComment} deleteComment={deleteComment} />} />
       </Routes>
-      
-      
-     
     </>
   );
 };
-  
-export default App;
 
-// comment
-// new commet
+export default App;
