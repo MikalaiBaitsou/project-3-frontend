@@ -1,12 +1,14 @@
 // src/components/PostDetail/PostDetail.jsx
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CommentList from '../CommentList/CommentList';
 import CommentForm from '../CommentForm/CommentForm';
 
-export default function PostDetail({ posts, deletePost, editPost, addComment, deleteComment, editComment }) {
+export default function PostDetail({ posts, deletePost, addComment, deleteComment, editComment }) {
   const { postId } = useParams();
-  const navigate = useNavigate();
-  const post = posts.find(p => p._id === postId);
+  console.log(useParams)
+  
+  const post = posts.find(p => p._id === postId.comments);
+  console.log(postId.comments)
 
   if (!post) return <h2>Post not found</h2>;
 

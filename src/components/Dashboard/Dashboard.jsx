@@ -10,7 +10,7 @@ import * as userService from '../../services/userService';
 
 
 
-const Dashboard = () => {
+function Dashboard () {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -33,7 +33,8 @@ const Dashboard = () => {
   // of user changes
 
   return (
-    <main>            
+    <main>
+
       <h1 className='zoomIn'>Hello,{user.username}</h1>
           <p>
             This is the dashboard page where you can see a list of all the users.
@@ -45,9 +46,10 @@ const Dashboard = () => {
             <button className="Login" type="button">Create New Post</button>
           </a>
           <a href="/posts">
-            <button className="Register" type="button">Post List</button>
+          <button className="Register" type="button">Post List</button>
           </a>
       </div>
+
       
     </main>
     

@@ -22,23 +22,26 @@ const NavBar = () => {
   }
 
   return (
-<nav>
+    <nav>
       {user ? (
-        <ul>
-          <li>Welcome, {user.username}</li>
-          {/* The new link */}
-          <li><Link to='/'>Dashboard</Link></li>
-          <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
-        </ul>
-      ) : (
-        <ul>
-            {/* Another new link */}
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/sign-in'>Sign In</Link></li>
-          <li><Link to='/sign-up'>Sign Up</Link></li>
+          <>
+            <p>{user.username}&apos;s Posts</p>
+            <ul>
+
+            <li><Link to='/'>Dashboard</Link></li>
+            <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
+          </ul>
           
-        </ul>
-      )}
+          </>
+          ) : (
+            <ul>
+                {/* Another new link */}
+              <li><Link to='/'>Home</Link></li>
+              <li><Link to='/sign-in'>Sign In</Link></li>
+              <li><Link to='/sign-up'>Sign Up</Link></li>
+              
+            </ul>
+        )}
     </nav>
   );
 };

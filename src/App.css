@@ -4,12 +4,27 @@
   padding: 2rem;
   text-align: center;
 }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    color-scheme: light , dark;
+    
+    background-clip: 100%;
+    
+  }
+
+
 .dark {
-  background-color:rgb(0, 111, 111) ;
+  background-color:rgb(0, 85, 85) ;
   color: white;
   border-color: silver;
 }
-
+.light {
+  background-color:honeydew ;
+  color: black;
+  border-color:silver;
+}
 
 
 .logo {
