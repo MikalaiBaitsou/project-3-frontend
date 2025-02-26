@@ -26,8 +26,7 @@ const NavBar = () => {
       {user ? (
           <>
             <p>{user.username}&apos;s Posts</p>
-            <ul>
-
+          <ul>
             <li><Link to='/'>Dashboard</Link></li>
             <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
           </ul>
