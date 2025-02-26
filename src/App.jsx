@@ -47,14 +47,29 @@ const App = () => {
     }
   }
 
+  async function editPost(postId, postData) {
+    try {
+      const updatedPost = await postService.update(postId, postData);
+      setPosts(prevPosts =>
+        prevPosts.map(post =>
+          post._id === postId ? updatedPost : post
+        )
+      );
+      navigate(`/posts/${postId}`); // Stay on the post detail page after editing
+    } catch (err) {
+      console.error('Error editing post:', err);
+    }
+  }
+
   // Add a comment to a post and update state
   async function addComment(postId, commentData) {
     try {
-      const newComment = await commentService.create(postId, commentData);
+      const newPostWithComment = await commentService.create(postId, commentData);
+      console.log(newPostWithComment)
       setPosts(prevPosts =>
         prevPosts.map(post =>
           post._id === postId
-            ? { ...post, comments: [...post.comments, newComment] }
+            ? newPostWithComment
             : post
         )
       );
@@ -66,7 +81,7 @@ const App = () => {
   // Delete a comment from a post and update state
   async function deleteComment(postId, commentId) {
     try {
-      await commentService.delete(postId, commentId);
+      await commentService.deleteComment(postId, commentId);
       setPosts(prevPosts =>
         prevPosts.map(post =>
           post._id === postId
@@ -97,6 +112,7 @@ const App = () => {
             <PostDetail
               posts={posts}
               deletePost={deletePost}
+              editPost={editPost} // Added editPost prop
               addComment={addComment}
               deleteComment={deleteComment}
             />

@@ -4,7 +4,7 @@ export default function CommentList({ comments, postId, deleteComment, editComme
       <ul>
         {comments.map(comment => (
           <li key={comment._id}>
-            <p>{comment.text}</p>
+            <p>{comment.content}</p>
             <button onClick={() => deleteComment(postId, comment._id)}>Delete</button>
           </li>
         ))}
