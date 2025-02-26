@@ -10,11 +10,11 @@ import { UserContext } from './contexts/UserContext';
 import PostForm from './components/PostForm/PostForm';
 import PostList from './components/PostList/PostList';
 import PostDetail from './components/PostDetail/PostDetail';
-import CommentList from './components/CommentList/CommentList';
-import CommentForm from './components/CommentForm/CommentForm';
+import './components/CommentList/CommentList';
+import './components/CommentForm/CommentForm';
 import * as postService from './services/postService';
 import * as commentService from './services/commentService';
-import MyButton from './components/CommonComponents/DynamicButton.jsx';
+import DynamicButton from './components/CommonComponents/DynamicButton.jsx';
 import usePosts from './hooks/usePosts';
 
 const App = () => {
@@ -24,7 +24,8 @@ const App = () => {
   const navigate = useNavigate();
   // Manage dark/light mode state
   const [isDarkMode, setIsDarkMode] = useState(false);
-
+  console.log(isDarkMode)
+  console.log(setIsDarkMode)
   // Create a new post and update state
   async function createPost(postData) {
     try {
@@ -94,13 +95,11 @@ const App = () => {
   }
 
   return (
-    // Container div applies the theme based on isDarkMode state
-    <div className={isDarkMode ? 'dark' : 'light'}>
+    <>
       {error && <div className="error">Error: {error.message}</div>}
       {user && <NavBar />}
       {/* Toggle dark/light mode */}
-      <MyButton isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-      {/* Define application routes */}
+      <DynamicButton />
       <Routes>
         <Route path='/' element={user ? <Dashboard /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm />} />
@@ -120,7 +119,7 @@ const App = () => {
           }
         />
       </Routes>
-    </div>
+    </>
   );
 };
 

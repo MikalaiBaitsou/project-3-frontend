@@ -24,6 +24,15 @@ html {
     align-items: stretch;
 }
 
+p {
+
+  max-width:fit-content;
+  font-size: 2rem;
+  margin-left: 2%;
+  margin-bottom: 4%;
+  filter: drop-shadow(0 .10rem rgb(0, 122, 118));
+}
+
 
 main {
   display: flex;
@@ -39,15 +48,17 @@ main {
 /*STACKED LOGO*/
 h1 {
   max-width:fit-content;
-  font-size: 4rem;
-  margin-bottom: 3%;
+  font-size: 5rem;
+  margin-bottom: 4%;
   filter: drop-shadow(0 .17rem rgb(0, 122, 118));
 }
 
 
 p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat';
+  margin-top: 1%;
 }
 body {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -61,7 +72,7 @@ body {
     opacity: 0;
   }
   to { 
-    transform: scale(1.6);   /* ends */
+    transform: scale(2);   /* ends */
     opacity: 1;
   }
 }
@@ -78,7 +89,7 @@ body {
             border-radius: 12px;
             font-weight: 600;
             text-decoration: none;
-            transition: transform 2.4s ease, box-shadow 1.4s ease;
+            transition: transform 2.4s ease, box-shadow 2.6s ease;
 }
 
 /* BUTTON STYLES FOR LANDING PAGE */
