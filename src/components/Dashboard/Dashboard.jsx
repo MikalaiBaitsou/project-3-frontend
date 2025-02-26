@@ -6,7 +6,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 import * as userService from '../../services/userService';
 
-import { Link } from 'react-router'
+
 
 
 
@@ -29,18 +29,26 @@ const Dashboard = () => {
       }
     }
     if (user) fetchUsers();
-  }, [user.username]); // this useEffect is running when component loads, or when the value
+  }, [user]); // this useEffect is running when component loads, or when the value
   // of user changes
 
   return (
     <main>            
-      <h1>Welcome, {user.username}</h1>
-      <p>
-        This is the dashboard page where you can see a list of all the users.
-      </p>
-      <Link to="/posts/new">Create New Post</Link>
-      <br />
-      <Link to="/posts">All Posts</Link>
+      <h1 className='zoomIn'>Hello,{user.username}</h1>
+          <p>
+            This is the dashboard page where you can see a list of all the users.
+          </p>
+      
+      {/*Buttons */}
+      <div className="button-container">
+          <a href="/posts/new">
+            <button className="Login" type="button">Create New Post</button>
+          </a>
+          <a href="/posts">
+            <button className="Register" type="button">Post List</button>
+          </a>
+      </div>
+      
     </main>
     
 

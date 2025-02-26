@@ -4,6 +4,13 @@
   padding: 2rem;
   text-align: center;
 }
+.dark {
+  background-color:rgb(0, 111, 111) ;
+  color: white;
+  border-color: silver;
+}
+
+
 
 .logo {
   height: 6em;
