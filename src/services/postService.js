@@ -19,7 +19,7 @@ export async function create(data) {
 }
 
 export async function deletePost(postId) {
-    const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+    const response = await fetch(`${BASE_URL}/${postId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
