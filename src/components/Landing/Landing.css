@@ -3,7 +3,7 @@
 
 * {
     margin: 0;
-    color-scheme: light;
+    color-scheme: light , dark;
     
     background-clip: 100%;
     
@@ -19,7 +19,7 @@ html {
       Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   
     outline-style: solid;
-    outline-color: gold;
+    outline-color: rgb(0, 0, 0);
     align-content: center;
     align-items: stretch;
 }
@@ -30,16 +30,21 @@ main {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-top: 19%;
+  padding-top: 20%;
   padding-bottom: 1%;
   justify-content: center;
   height: 100%;
 }
+
+/*STACKED LOGO*/
 h1 {
-  max-width: 800px;
-  font-size: 8rem;
-  margin-bottom: 1%;
+  max-width:fit-content;
+  font-size: 4rem;
+  margin-bottom: 3%;
+  filter: drop-shadow(0 .17rem rgb(0, 122, 118));
 }
+
+
 p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
@@ -56,7 +61,7 @@ body {
     opacity: 0;
   }
   to { 
-    transform: scale(1.7);   /* ends */
+    transform: scale(1.6);   /* ends */
     opacity: 1;
   }
 }

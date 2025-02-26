@@ -1,26 +1,31 @@
-import './Landing.css';  
+import  { useContext } from 'react';
+import './Landing.css';
+import Dashboard from '../Dashboard/Dashboard';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
-function Landing ({ User }) {
+function Landing() {
+  const { user } = useContext(UserContext);
+
   return (
-    <main>
-      <h1 className="zoomIn"><em> STACKED </em></h1>
-      <p>Sign up now, or sign in to see your super secret dashboard!</p>
-      <div className="button-container">
-        {!User ? (
+    <>
+      <main>
+        {!user ? (
           <>
-            <a href="/sign-in">
-              <button className="Login" type="button">Sign-in</button>
-            </a>
-            <a href="/sign-up">
-              <button className="Register" type="button">Register</button>
-            </a>
+            <h1 className="zoomIn"> STACKED </h1>
+            <p>!</p>
+            <div className="button-container">
+              <Link to="/sign-in" className="Login">Sign-in</Link>
+              <Link to="/sign-up" className="Register">Register</Link>
+            </div>
           </>
         ) : (
-          // if User exists
-          <p>Welcome back!</p>
+          <>
+            <Dashboard />
+          </>
         )}
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
 

@@ -96,7 +96,8 @@ const SignUpForm = () => {
                 </div>
                 <div>
                     <button disabled={isFormInvalid()}>Sign Up</button>
-                    <button onClick={() => navigate('/')}>Cancel</button>
+                    {/* Updated cancel button */}
+                    <button type="button" onClick={() => navigate('/')}>Cancel</button>
                 </div>
             </form>
         </main>
