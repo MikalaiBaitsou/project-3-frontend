@@ -54,11 +54,12 @@ const App = () => {
 
   async function addComment(postId, commentData) {
     try {
-      const newComment = await commentService.create(postId, commentData);
+      const newPostWithComment = await commentService.create(postId, commentData);
+      console.log(newPostWithComment)
       setPosts(prevPosts =>
         prevPosts.map(post =>
           post._id === postId
-            ? { ...post, comments: [...post.comments, newComment] }
+            ? newPostWithComment
             : post
         )
       );
