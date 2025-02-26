@@ -70,7 +70,7 @@ const App = () => {
 
   async function deleteComment(postId, commentId) {
     try {
-      await commentService.delete(postId, commentId);
+      await commentService.deleteComment(postId, commentId);
       setPosts(prevPosts =>
         prevPosts.map(post =>
           post._id === postId

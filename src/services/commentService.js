@@ -14,5 +14,14 @@ export async function create(postId, data) {
 }
 
 export async function deleteComment(postId, commentId) {
-  await fetch(`${COMMENT_URL}/${postId}/${commentId}`, { method: 'DELETE' });
+  const res = await fetch(`${COMMENT_URL}/${postId}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+  if (!res.ok) {
+    throw new Error('Failed to delete comment');
+  }
+  return res.json(); // Returns { message: 'Comment deleted successfully' }
 }
