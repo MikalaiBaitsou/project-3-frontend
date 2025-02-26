@@ -46,6 +46,20 @@ const App = () => {
     }
   }
 
+  async function editPost(postId, postData) {
+    try {
+      const updatedPost = await postService.update(postId, postData);
+      setPosts(prevPosts =>
+        prevPosts.map(post =>
+          post._id === postId ? updatedPost : post
+        )
+      );
+      navigate(`/posts/${postId}`); // Stay on the post detail page after editing
+    } catch (err) {
+      console.error('Error editing post:', err);
+    }
+  }
+
   // Add a comment to a post and update state
   async function addComment(postId, commentData) {
     try {
@@ -99,6 +113,7 @@ const App = () => {
             <PostDetail
               posts={posts}
               deletePost={deletePost}
+              editPost={editPost} // Added editPost prop
               addComment={addComment}
               deleteComment={deleteComment}
             />

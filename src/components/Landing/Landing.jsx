@@ -13,7 +13,7 @@ function Landing() {
         {!user ? (
           <>
             <h1 className="zoomIn"> STACKED </h1>
-            <p>!</p>
+            {/* <p>!</p> */}
             <div className="button-container">
               <Link to="/sign-in" className="Login">Sign-in</Link>
               <Link to="/sign-up" className="Register">Register</Link>
